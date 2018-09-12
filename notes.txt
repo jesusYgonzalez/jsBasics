@@ -1,0 +1,11 @@
+JAVASCRIPT NOTES
+
+
+
+
+
+
+
+IDE SHORTCUTS
+* function + shift + f6 = rename a file
+*
