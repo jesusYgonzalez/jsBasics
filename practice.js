@@ -192,34 +192,122 @@ interviewQuestion('construction')('Bob');
 // console.log(day);
 // // console.log(month);
 
-class Person {
-  constructor(name, yearOfBirth, job) {
+// class Person {
+//   constructor(name, yearOfBirth, job) {
+//     this.name = name;
+//     this.yearOfBirth = yearOfBirth;
+//     this.job = job;
+//   }
+//   calculateAge() {
+//     let age = new Date().getFullYear() - this.yearOfBirth;
+//     console.log(age);
+//   }
+// }
+//
+// class Athlete extends Person {
+//   constructor(name, yearOfBirth, job, olympicGames, medals) {
+//     super(name, yearOfBirth, job);
+//     this.olympicGames = olympicGames;
+//     this.medals = medals;
+//   }
+//   wonMedal() {
+//     this.medals++;
+//     console.log(this.medals);
+//   }
+// }
+//
+// const bobAthlete = new Athlete('Bob', 1987, 'Runner', 2, 15);
+//
+// bobAthlete.wonMedal();
+// bobAthlete.calculateAge();
+
+
+class Element {
+  constructor(name, buildYear) {
     this.name = name;
-    this.yearOfBirth = yearOfBirth;
-    this.job = job;
-  }
-  calculateAge() {
-    let age = new Date().getFullYear() - this.yearOfBirth;
-    console.log(age);
+    this.buildYear = buildYear;
   }
 }
 
-class Athlete extends Person {
-  constructor(name, yearOfBirth, job, olympicGames, medals) {
-    super(name, yearOfBirth, job);
-    this.olympicGames = olympicGames;
-    this.medals = medals;
+class Park extends Element {
+  constructor(name, buildYear, area, numTrees) {
+    super(name, buildYear);
+    this.area = area;
+    this.numTrees = numTrees;
   }
-  wonMedal() {
-    this.medals++;
-    console.log(this.medals);
+  treeDensity() {
+    const density = this.numTrees / this.area;
+    console.log(`${this.name} has a tree density of ${density} trees per square mile`);
   }
 }
 
-const bobAthlete = new Athlete('Bob', 1987, 'Runner', 2, 15);
+class Street extends Element{
+  constructor(name, buildYear, length, size = 3) {
+    super(name, buildYear);
+    this.length = length;
+    this.size = size;
+  }
 
-bobAthlete.wonMedal();
-bobAthlete.calculateAge();
+  classifyStreet() {
+    const classification = new Map();
+    classification.set(1, 'tiny');
+    classification.set(2, 'small');
+    classification.set(3, 'normal');
+    classification.set(4, 'big');
+    classification.set(5, 'huge');
+    console.log(`${this.name}, built in ${this.buildYear}, is a ${classification.get(this.size)} street`);
+  }
+
+}
+
+const allParks = [
+  new Park('Green Park', 1999, 0.4, 233),
+  new Park('Big Park', 1928, 1.5, 155),
+  new Park('Olden Park', 1909, 5.5, 3898),
+];
+
+const allStreets = [
+  new Street('Bellevue Avenue', 1997, 1.4, 2),
+  new Street('Tiger Avenue', 2009, 3.4),
+  new Street('Bellevue Avenue', 1897, 0.4, 1),
+  new Street('Santa Monica Boulevard', 1933, 0.4, 1),
+];
+
+function calc(arr) {
+  const sum = arr.reduce((prev, cur, index) => prev + cur, 0);
+
+  return [sum, sum / arr.length];
+}
+
+function reportParks(p) {
+  console.log('----------Parks Report--------------');
+  //Density
+  p.forEach(el => el.treeDensity());
+
+  //Average age
+  const ages = p.map(el => new Date().getFullYear() - el.buildYear);
+  const [totalAge, avAge] = calc(ages);
+  console.log(`Our ${p.length} parks have an average of ${avAge} years`);
+
+  //Which has > 1k trees?
+  const i = p.map(el => el.numTrees).findIndex(el => el >= 1000);
+  console.log(`${p[i].name} has more than 1000 trees`);
+
+}
+
+function reportStreets(s) {
+  console.log('----------Streets Report--------------');
+  const [totalLength, avgLength] = calc(s.map(el => el.length));
+  console.log(`Our ${s.length} streets have a total length of ${totalLength} mi, with an average of ${avgLength}`);
+
+  s.forEach(el => el.classifyStreet());
+}
+
+reportParks(allParks);
+reportStreets(allStreets);
+
+
+
 
 
 
