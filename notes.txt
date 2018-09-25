@@ -1,5 +1,6 @@
 JAVASCRIPT NOTES
 
+Arrow functions do not have a this keyword
 
 
 
