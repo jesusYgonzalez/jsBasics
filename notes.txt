@@ -2,9 +2,13 @@ JAVASCRIPT NOTES
 
 Arrow functions do not have a this keyword
 
+//get an element from the dom
+document.getElementById('img').src;
 
-
-
+response.write() = its used to send data to the browser
+response.end() = used at the end of a function, to specify to the browser that the response is completed
+response.setHeader() = Used to send an HTTP response header to the browser
+response.writeHead() =
 
 
 IDE SHORTCUTS
