@@ -4,6 +4,8 @@ Arrow functions do not have a this keyword
 
 //get an element from the dom
 document.getElementById('img').src;
+every async function returns a promise
+
 
 response.write() = its used to send data to the browser
 response.end() = used at the end of a function, to specify to the browser that the response is completed
@@ -14,3 +16,8 @@ response.writeHead() =
 IDE SHORTCUTS
 * function + shift + f6 = rename a file
 *
+
+
+
+./ Current folder
+../ Previous/ Parent folder
